@@ -37,8 +37,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var mongoose = require('mongoose');
-// mongoose.connect(process.env.DB_CONN_XPLORE);
+var mongoose = require('mongoose');
+mongoose.connect(process.env.DB_CONN_XPLORE);
 
 app.use(session({
   secret: process.env.XPLORR_APP_SECRET
