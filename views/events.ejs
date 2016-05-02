@@ -6,9 +6,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= activity %> near <%= city %>, <%= state %></h1>
+    <h1><%= activity %> events near <%= city %>, <%= state %></h1>
     <% activities.forEach(function(activity){ %>
-      <h3><%= activity.place.placeName %></h3>
+      <div class='event'>
+        <h2><%= activity.organization.organizationName %></h2>
+        <p><%= activity.assetImages.imageUrlAdr %></p>
+        <div class="event__location">
+          <h4>Where: <%= activity.place.placeName %></h4>
+          <h5><%= activity.place.addressLine1Txt %></h5>
+          <h5><%= activity.place.cityName %>, <%= activity.place.stateProvinceCode %></h5>
+          <h5><%= activity.place.postalCode %></h5>
+        </div>
+      </div>
     <% }) %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </body>

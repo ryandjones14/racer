@@ -31,6 +31,7 @@ router.get('/events', function(req, res, next) {
       data.results.forEach(function(result) {
         activities.push(result);
       });
+      console.log(activities[0]);
       res.render('events', { title: 'Xplore', activities: activities, activity: activity, city: city, state: state});
       // res.send(activities);
     }
