@@ -6,9 +6,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <h2>Get Out and <%= title %></h2>
-    <% include ../partials/event-form %>
+    <h1><%= activity %> near <%= city %>, <%= state %></h1>
+    <% activities.forEach(function(activity){ %>
+      <h3><%= activity.place.placeName %></h3>
+    <% }) %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </body>
 </html>
