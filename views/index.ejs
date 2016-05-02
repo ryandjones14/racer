@@ -2,19 +2,25 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <h2>Get Out and <%= title %></h2>
-    <form action="/trips" method="get">
+    <form action="/trips" method="post">
       <p>City:</p>
       <input name='city' type='text'></input><br><br>
       <p>State:</p>
       <input name='state' type='text' placeholder="EX: TX"></input><br><br>
       <p>Activity:</p>
-      <input name='activity' type='text'></input><br><br>
+      <select name='activity'>
+        <option value='climbing'>Rock Climbing</option>
+        <option>Hiking</option>
+        <option>Camping</option>
+      </select><br><br>
       <input type='submit'></input>
     </form>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </body>
 </html>
