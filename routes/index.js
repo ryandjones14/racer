@@ -6,6 +6,7 @@ var searchKey = process.env.ACTIVE_SEARCH_KEY;
 var city;
 var state;
 var activity;
+var perPage;
 
 /* GET home page. */
 router.get('/', function(req, res, next){
@@ -16,11 +17,13 @@ router.post('/events', function(req, res, next){
   city = req.body.city;
   state = req.body.state;
   activity = req.body.activity;
+  perPage = req.body.perPage;
   res.redirect('/events');
 })
 
 router.get('/events', function(req, res, next) {
-  var queryString = `radius=50&city=${city}&state=${state}&current_page=1&per_page=10&sort=distance&topic=${activity}&exclude_children=true`;
+
+  var queryString = `radius=50&city=${city}&state=${state}&current_page=1&per_page=${perPage}&sort=distance&topic=${activity}&exclude_children=true`;
 
   var activeSearchURL = `http://api.amp.active.com/v2/search?${queryString}&api_key=${searchKey}`;
 
@@ -37,5 +40,7 @@ router.get('/events', function(req, res, next) {
     }
   })
 });
+
+
 
 module.exports = router;
