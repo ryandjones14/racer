@@ -4,11 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var session = require('express-session');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var Twitter = require('node-twitter-api');
 
+var twitterKey = process.env.XPLORR_TWITTER_KEY;
+var twitterSecret = process.env.XPLORR_TWITTER_SECRET;
+var twitterCallbackUrl = process.env.XPLORR_CALLBACK;
+
+var twitter = new Twitter({
+  consumerKey: twitterKey,
+  consumerSecret: twitterSecret,
+  callback: twitterCallbackUrl
+});
 
 var app = express();
 
@@ -26,6 +39,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // var mongoose = require('mongoose');
 // mongoose.connect(process.env.DB_CONN_XPLORE);
+
+app.use(session({
+  secret: process.env.XPLORR_APP_SECRET
+}));
+
 
 app.use('/', routes);
 app.use('/users', users);
@@ -60,6 +78,30 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+
+// passport.use(new TwitterStrategy({
+//     consumerKey: twitterKey,
+//     consumerSecret: twitterSecret,
+//     callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+//   },
+//   function(token, tokenSecret, profile, cb) {
+//     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+//       return cb(err, user);
+//     });
+//   }
+// ));
+
+app.get('/auth/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 
 module.exports = app;
