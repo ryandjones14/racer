@@ -1,7 +1,11 @@
 <header class="header">
   <h2><a href="/" title="Home">xplore</a></h2>
   <ul>
+    <% if(global.currentUser) { %>
+    <li><a href="/logout">Log out</a></li>
+    <% } else { %>
     <li><a href="/request-token">Sign in with Twitter</a></li>
-    <li>About</li>
+    <% } %>
+    <li><a href="#">About</a></li>
   </ul>
 </header>

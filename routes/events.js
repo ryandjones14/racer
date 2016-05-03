@@ -6,7 +6,7 @@ var city;
 var state;
 var activity;
 
-router.post('/events', function(req, res, next){
+router.post('/', function(req, res, next){
   city = req.body.city;
   state = req.body.state;
   activity = req.body.activity;

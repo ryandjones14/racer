@@ -8,7 +8,10 @@
   <body>
     <% include ../partials/navbar %>
     <h1><%= title %></h1>
-    <h2>Get Out and <%= title %></h2>
+    <h2>Go <%= title %>
+    <% if(global.currentUser){ %>
+    <%= global.currentUser.username %>
+    <% } %></h2>
     <% include ../partials/event-form %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </body>

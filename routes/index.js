@@ -58,14 +58,20 @@ router.get('/callback', function(req, res) {
                       });
                       user.save(function(err) {
                         if (err) console.log(err);
+                        console.log("NEW USER");
                         // CODE HERE TO SET current_user_id in session
-
+                        global.currentUser = user;
+                        console.log("LOGED IN AS "+global.currentUser);
+                        res.redirect('/');
                         // return user;
                       });
                     } else {
                       // CODE HERE TO SET current_user_id in session
-                      console.log(session);
-                      return user;
+                      console.log("OLD USER");
+                      global.currentUser = user;
+                      // req.session.current_user_id = profile.id;
+                      console.log("LOGED IN AS "+global.currentUser);
+                      res.redirect('/');
                     }
                   });
               }
@@ -88,7 +94,9 @@ router.get('/callback', function(req, res) {
 
         // route for logging out
     router.get('/logout', function(req, res) {
-        req.logout();
+        global.currentUser = {};
+        debugger;
+        console.log(global.currentUser);
         res.redirect('/');
     });
 
@@ -151,7 +159,7 @@ router.get('/events', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next){
-  res.render('index', { title: 'xplorr'});
+  res.render('index', { title: 'xplore'});
 })
 
 
