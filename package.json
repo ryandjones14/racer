@@ -20,5 +20,19 @@
     "passport-twitter": "^1.0.4",
     "request": "^2.72.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryandjones14/xplore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryandjones14/xplore/issues"
+  },
+  "homepage": "https://github.com/ryandjones14/xplore#readme",
+  "description": ""
 }
