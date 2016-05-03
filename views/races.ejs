@@ -21,12 +21,24 @@
             <h5><%= activity.place.cityName %>, <%= activity.place.stateProvinceCode %></h5>
             <h5><%= activity.place.postalCode %></h5>
           </div>
+          <div class="event__date">
+            <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
+          </div>
           <button><a href=<%= activity.registrationUrlAdr %> target="_blank" title="">Register</a></button>
           <% if(global.currentUser){ %>
-          <form action="/save-event" method="get" accept-charset="utf-8">
-            /save-event
-            get
+          <form action="/races/new" method="post" accept-charset="utf-8">
+            <input type="hidden" value="<%= global.currentUser.id %>" name="userId"></input>
+            <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
+            <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
+            <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
+            <input type="hidden" value="<%= activity.place.addressLine1Txt %>" name="address"></input>
+            <input type="hidden" value="<%= activity.place.cityName %>" name="city"></input>
+            <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
+            <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
+            <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
+            <input type="submit"></input>
           </form>
+          <% } %>
         </div>
       <% }) %>
     <% }else{ %>

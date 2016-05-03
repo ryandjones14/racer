@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include ../../partials/navbar %>
+    <% if(races.length>0){ %>
+      <h1>races for <%= global.currentUser.username %></h1>
+      <% races.forEach(function(race){ %>
+        <div class='event'>
+          <h2><%= race.name %></h2>
+          <% if(race.logo){ %>
+            <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
+          <% } %>
+          <div class="event__location">
+            <h4>Where: <%= race.place %></h4>
+            <h5><%= race.address %></h5>
+            <h5><%= race.city %>, <%= race.state %></h5>
+            <h5><%= race.zip %></h5>
+          </div>
+
+          <button><a href=<%= race.register %> target="_blank" title="">Register</a></button>
+        </div>
+      <% }) %>
+    <% }else{ %>
+    <h3>It doesn't look like you've saved any races yet.</h3>
+    <% } %>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+  </body>
+</html>

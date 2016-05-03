@@ -10,7 +10,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var events = require('./routes/events');
+var races = require('./routes/races');
 
 var Twitter = require('node-twitter-api');
 
@@ -48,7 +48,7 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/events', events);
+app.use('/races', races);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
