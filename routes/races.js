@@ -80,7 +80,6 @@ router.post('/new', function(req, res, next){
   newRace.save(function(err, user) {
     if (err) console.log(err);
     var backURL=req.header('Referer') || '/';
-    console.log("backURL: "+backURL);
     res.redirect(backURL);
   });
 })
