@@ -9,11 +9,10 @@ var state;
 var activity;
 
 router.get('/my-races', function(req, res, next) {
-  var id = global.currentUser.id;
+  var id = req.session.currentUser._id;
   Race.find({ userId: id }, function(err, races) {
     if (err) console.log(err);
-    console.log(races[0]);
-    res.render('races/my-races', {title: 'racer', races: races, currentUser: req.session.user});
+    res.render('races/my-races', {title: 'racer', races: races, currentUser: req.session.currentUser});
   });
 });
 
@@ -37,11 +36,13 @@ router.post('/new', function(req, res, next){
     state: req.body.state,
     zip: req.body.zip,
     registerUrl: req.body.register,
+    date: req.body.date,
     userId: req.body.userId
   });
 
   newRace.save(function(err, user) {
     if (err) console.log(err);
+    console.log("RACE", newRace);
     var backURL=req.header('Referer') || '/';
     res.redirect(backURL);
   });
@@ -88,7 +89,7 @@ router.get('/', function(req, res, next) {
         activities.push(result);
       });
       console.log(activities[0]);
-      res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state});
+      res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser});
       // res.send(activities);
     }
   })

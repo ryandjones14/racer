@@ -8,7 +8,7 @@
   <body>
     <% include ../../partials/navbar %>
     <% if(races.length>0){ %>
-      <h1>races for <%= global.currentUser.username %></h1>
+      <h1>races for <%= currentUser.username %></h1>
       <% races.forEach(function(race){ %>
         <div class='event'>
           <h2><%= race.name %></h2>

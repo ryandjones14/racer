@@ -9,6 +9,7 @@ var raceSchema = new mongoose.Schema({
     state: String,
     zip: String,
     registerUrl: String,
+    date: String,
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

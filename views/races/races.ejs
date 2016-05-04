@@ -25,9 +25,9 @@
             <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
           </div>
           <button><a href=<%= activity.registrationUrlAdr %> target="_blank" title="">Register</a></button>
-          <% if(global.currentUser){ %>
+          <% if(currentUser){ %>
           <form action="/races/new" method="post" accept-charset="utf-8">
-            <input type="hidden" value="<%= global.currentUser.id %>" name="userId"></input>
+            <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
             <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
             <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
             <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
@@ -36,6 +36,7 @@
             <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
             <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
             <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
+            <input type="hidden" value="<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>" name="date"></input>
             <input type="submit" value="Save"></input>
           </form>
           <% } %>
