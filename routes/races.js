@@ -8,22 +8,52 @@ var city;
 var state;
 var activity;
 
+router.get('/my-races', function(req, res, next) {
+  var id = global.currentUser.id;
+  Race.find({ userId: id }, function(err, races) {
+    if (err) console.log(err);
+    console.log(races[0]);
+    res.render('races/my-races', {title: 'racer', races: races});
+  });
+});
+
+router.get('/delete/:id', function(req, res, next){
+  var id = req.params.id;
+  Race.findByIdAndRemove(id, function(err) {
+    if (err) console.log(err);
+    console.log('Race deleted!');
+    var backURL=req.header('Referer') || '/';
+    res.redirect(backURL);
+  });
+})
+
+router.post('/new', function(req, res, next){
+  var newRace = Race({
+    name: req.body.name,
+    logo: req.body.logo,
+    place: req.body.place,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    registerUrl: req.body.register,
+    userId: req.body.userId
+  });
+
+  newRace.save(function(err, user) {
+    if (err) console.log(err);
+    var backURL=req.header('Referer') || '/';
+    res.redirect(backURL);
+  });
+})
+
 router.post('/', function(req, res, next){
   city = req.body.city;
   state = req.body.state;
   activity = req.body.activity;
   console.log("Testestest");
   res.redirect('/races');
-
 })
-
-router.get('/my-races', function(req, res, next) {
-  var id = global.currentUser.id;
-  Race.find({ userId: id }, function(err, races) {
-    if (err) console.log(err);
-    res.render('races/my-races', {title: 'racer', races: races});
-  });
-});
 
 router.get('/', function(req, res, next) {
 
@@ -58,30 +88,10 @@ router.get('/', function(req, res, next) {
         activities.push(result);
       });
       console.log(activities[0]);
-      res.render('races', { title: 'racer', activities: activities, activity: activity, city: city, state: state});
+      res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state});
       // res.send(activities);
     }
   })
 });
-
-router.post('/new', function(req, res, next){
-  var newRace = Race({
-    name: req.body.name,
-    logo: req.body.logo,
-    place: req.body.place,
-    address: req.body.address,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    registerUrl: req.body.register,
-    userId: req.body.userId
-  });
-
-  newRace.save(function(err, user) {
-    if (err) console.log(err);
-    var backURL=req.header('Referer') || '/';
-    res.redirect(backURL);
-  });
-})
 
 module.exports = router;

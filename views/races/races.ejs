@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <% include ../partials/navbar %>
+    <% include ../../partials/navbar %>
     <% if(activities.length>0){ %>
       <h1><%= activity %> events near <%= city %>, <%= state %></h1>
       <% activities.forEach(function(activity){ %>
@@ -36,7 +36,7 @@
             <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
             <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
             <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
-            <input type="submit"></input>
+            <input type="submit" value="Save"></input>
           </form>
           <% } %>
         </div>
