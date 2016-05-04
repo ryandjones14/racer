@@ -42,7 +42,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.DB_CONN_XPLORE);
 
 app.use(session({
-  secret: process.env. XPLORR_APP_SECRET,
+  secret: process.env.XPLORR_APP_SECRET,
   saveUninitialized: true,
   resave: false,
   cookie: { maxAge: 60000 }
