@@ -13,7 +13,7 @@ router.get('/my-races', function(req, res, next) {
   Race.find({ userId: id }, function(err, races) {
     if (err) console.log(err);
     console.log(races[0]);
-    res.render('races/my-races', {title: 'racer', races: races});
+    res.render('races/my-races', {title: 'racer', races: races, currentUser: req.session.user});
   });
 });
 

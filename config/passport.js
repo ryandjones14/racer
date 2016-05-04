@@ -26,9 +26,9 @@ module.exports = function(passport) {
     // code for facebook (use('facebook', new FacebookStrategy))
 
     // =========================================================================
-    // TWITTER =================================================================
+    // ==================== TWITTER ============================================
     // =========================================================================
-    passport.use(new TwitterStrategy({
+    passport.use('twitter', new TwitterStrategy({
 
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
@@ -41,7 +41,7 @@ module.exports = function(passport) {
     // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
 
-            User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+            User.findOne({ 'twitterId' : profile.id }, function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database

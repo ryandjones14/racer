@@ -52,26 +52,30 @@ router.get('/callback', function(req, res) {
                     //No user was found... so create a new user with values from Twitter (all the profile. stuff)
                     if (!user) {
                       user = new User({
-                        twitterId: profile.id,
                         username: profile.screen_name,
+                        twitterId: profile.id,
                         profilePic: profile.profile_image_url
                       });
-                      user.save(function(err) {
-                        if (err) console.log(err);
-                        // CODE HERE TO SET current_user_id in session
-                        global.currentUser = user;
+                      console.log("USER", user);
 
+                      user.save(function(err) {
+                        if (err) console.log("ERROR", err);
+                        // CODE HERE TO SET current_user_id in session
+                        req.session.currentUser = user;
+                        console.log(req.session.currentUser);
                         var backURL=req.header('Referer') || '/';
                         res.redirect(backURL);
                         // return user;
                       });
+
                     } else {
                       // CODE HERE TO SET current_user_id in session
-                      global.currentUser = user;
+                      req.session.currentUser = user;
+                      console.log(req.session.currentUser);
 
                       var backURL=req.header('Referer') || '/';
                       console.log("backURL: "+backURL);
-                      res.redirect(backURL);
+                      res.redirect('/');
                     }
                   });
               }
@@ -124,7 +128,7 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next){
-  res.render('index', { title: 'racer'});
+  res.render('index', { title: 'racer', currentUser: req.session.currentUser});
 })
 
 

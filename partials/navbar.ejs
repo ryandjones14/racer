@@ -1,7 +1,7 @@
 <header class="header">
   <h2><a href="/" title="Home"><%= title %></a></h2>
   <ul>
-    <% if(global.currentUser) { %>
+    <% if(currentUser) { %>
     <li><a href="/logout">Log out</a></li>
     <li><a href="/races/my-races">My Races</a></li>
     <% } else { %>
