@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
         activities.push(result);
       });
       console.log(activities[0]);
-      res.render('races', { title: 'xplorr', activities: activities, activity: activity, city: city, state: state});
+      res.render('races', { title: 'racer', activities: activities, activity: activity, city: city, state: state});
       // res.send(activities);
     }
   })
