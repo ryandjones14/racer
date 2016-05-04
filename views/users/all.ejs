@@ -7,15 +7,21 @@
   </head>
   <body>
     <% include ../../partials/navbar %>
-    <h1>Welcome to <%= title %>
-    <% if(currentUser){ %>
-    <%= currentUser.username %>
-    <% } %></h1>
+    <h1>Welcome to <%= title %>, <%= currentUser.username %></h1>
     <% users.forEach(function(user){ %>
       <% if(user._id != currentUser._id){ %>
         <div class="user">
           <img src=<%= user.profilePic %> alt="">
           <h3><%=user.username%></h3>
+        </div>
+        <div class="follow-form">
+          <form action="/users/follow" method="post" accept-charset="utf-8">
+            <input type="hidden" value="<%= user._id %>" name="id"></input>
+            <input type="hidden" value="<%= user.username %>" name="name"></input>
+            <input type="hidden" value="<%= user.profilePic %>" name="profilePic"></input>
+            <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+            <input type="submit" value="Follow">
+          </form>
         </div>
       <% } %>
     <% }) %>

@@ -10,7 +10,7 @@ var activity;
 
 router.get('/my-races', function(req, res, next) {
   var id = req.session.currentUser._id;
-  Race.find({ userId: id }, function(err, races) {
+  Race.find({ 'userId': id }, function(err, races) {
     if (err) console.log(err);
     res.render('races/my-races', {title: 'racer', races: races, currentUser: req.session.currentUser});
   });
