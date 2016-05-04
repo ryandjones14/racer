@@ -11,7 +11,7 @@
     <% friends.forEach(function(friend){ %>
       <div class="friend">
         <img src=<%= friend.profilePic %> alt="">
-        <h3><a href="/users/<%= friend._id %>"><%=friend.username%></a></h3>
+        <h3><a href="/users/<%= friend.id %>"><%=friend.username%></a></h3>
       </div>
     <% }) %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>

@@ -30,7 +30,7 @@ router.get('/:id', function(req, res, next){
   });
   Race.find({ 'userId': id }, function(err, races) {
     if (err) console.log(err);
-    console.log(races[0]);
+    console.log("RACE", races[0]);
     res.render('users/friend', {title: 'racer', races: races, friend: friend, currentUser: req.session.currentUser});
   });
 })
