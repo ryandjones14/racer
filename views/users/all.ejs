@@ -3,7 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/united/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/yeti/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -13,22 +13,22 @@
       <% if(user._id != currentUser._id){ %>
         <div class="user">
           <img src=<%= user.profilePic %> alt="Profile Picture">
-          <h3><%=user.username%></h3>
-        </div>
-        <div class='follow__button'>
-        <% if(friends.indexOf(user._id.toString())>-1){ %>
-            <a href="/users/delete/<%= user._id %>"><button class="btn btn-danger">Unfollow</button></a>
-        <% } else { %>
-            <div class="follow-form">
-              <form action="/users/follow" method="post" accept-charset="utf-8">
-                <input type="hidden" value="<%= user._id %>" name="id"></input>
-                <input type="hidden" value="<%= user.username %>" name="name"></input>
-                <input type="hidden" value="<%= user.profilePic %>" name="profilePic"></input>
-                <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
-                <input class="btn btn-primary" type="submit" value='Follow'>
-              </form>
-            </div>
-        <% } %>
+          <h3 class="user__name"><%=user.username%></h3>
+          <div class='follow__button user'>
+          <% if(friends.indexOf(user._id.toString())>-1){ %>
+              <a href="/users/delete/<%= user._id %>"><button class="btn btn-danger">Unfollow</button></a>
+          <% } else { %>
+              <div class="follow-form user">
+                <form action="/users/follow" method="post" accept-charset="utf-8">
+                  <input type="hidden" value="<%= user._id %>" name="id"></input>
+                  <input type="hidden" value="<%= user.username %>" name="name"></input>
+                  <input type="hidden" value="<%= user.profilePic %>" name="profilePic"></input>
+                  <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+                  <input class="btn btn-success" type="submit" value='Follow'>
+                </form>
+              </div>
+          <% } %>
+          </div>
         </div>
       <% } %>
     <% }) %>

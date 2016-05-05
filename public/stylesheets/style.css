@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: inherit;
 }
 
 .org-logo {
@@ -20,10 +20,24 @@ li a{
   height: 56px;
 }
 
-a{
-  color: inherit;
+.event__btn {
+  display: inline-block;
 }
 
-.event__buttons .btn{
+.user *{
   display: inline-block;
+}
+
+.user__name {
+  width: 200px;
+}
+
+.btn {
+  width: 90px;
+  border: none;
+}
+
+.event {
+  background-color: #f2f2f2;
+  border-radius: 5px;
 }
