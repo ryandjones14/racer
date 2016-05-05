@@ -47,13 +47,23 @@ router.get('/:id', authenticatedUser, function(req, res, next){
 /* GET users listing. */
 router.get('/', authenticatedUser, function(req, res, next) {
   var allUsers = [];
-  User.find({}, function(err, users) {
-    if (err) console.log(err);
-    users.forEach(function(user){
-      allUsers.push(user);
-    })
-    res.render('users/all', {title: 'racer', currentUser: req.session.currentUser, users: allUsers});
-  });
+  var friendsIds = [];
+  console.log("USER", req.session.currentUser);
+  Friend.find({'followerId': req.session.currentUser._id}, function(err, friends){
+    if (err) console.log("ERROR", err);
+    friends.forEach(function(friend){
+      friendsIds.push(friend.id);
+    });
+    User.find({}, function(err, users) {
+      if (err) console.log(err);
+      users.forEach(function(user){
+        allUsers.push(user);
+      });
+      console.log(allUsers[0]);
+      res.render('users/all', {title: 'racer', currentUser: req.session.currentUser, users: allUsers, friends: friendsIds});
+    });
+  })
+
 });
 
 router.post('/follow', authenticatedUser, function(req, res, next){
