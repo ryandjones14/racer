@@ -98,7 +98,19 @@ router.get('/', function(req, res, next) {
         activities.push(result);
       });
       console.log(activities[0]);
-      res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser});
+      var myRaces = [];
+      if (req.session.currentUser){
+        Race.find({'userId': req.session.currentUser._id}, function(err, races) {
+          if (err) console.log(err);
+          races.forEach(function(race){
+            myRaces.push(race.registerUrl);
+          });
+          res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser, myRaces: myRaces});
+        });
+      } else {
+        res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser});
+      }
+
       // res.send(activities);
     }
   })
