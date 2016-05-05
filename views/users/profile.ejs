@@ -12,7 +12,7 @@
     <% friends.forEach(function(friend){ %>
       <div class="user">
         <img src=<%= friend.profilePic %> alt="">
-        <h3><a href="/users/<%= friend.id %>"><%=friend.username%></a></h3>
+        <h3 class="user__name"><a href="/users/<%= friend.id %>"><%=friend.username%></a></h3>
         <a href="/users/delete/<%= friend.id %>"><button class="btn btn-danger">Unfollow</button></a>
       </div>
     <% }) %>
