@@ -5,8 +5,17 @@ var Friend = require('../models/friend');
 var Race = require('../models/race');
 var User = require('../models/user');
 
+function authenticatedUser(req, res, next) {
+  // If the user is authenticated, then we can continue with next
+  // https://github.com/jaredhanson/passport/blob/a892b9dc54dce34b7170ad5d73d8ccfba87f4fcf/lib/passport/http/request.js#L74
+  if (req.isAuthenticated()) return next();
+  // Otherwise
+  // req.flash('errorMessage', 'Login to access!');
+  return res.redirect('/');
+}
+
 // GET profile for currentUser
-router.get('/profile', function(req, res, next){
+router.get('/profile', authenticatedUser, function(req, res, next){
   var allFriends = [];
   Friend.find({'followerId': req.session.currentUser._id}, function(err, friends){
     if (err) console.log(err);
@@ -21,7 +30,7 @@ router.get('/profile', function(req, res, next){
 })
 
 // GET races for followed user
-router.get('/:id', function(req, res, next){
+router.get('/:id', authenticatedUser, function(req, res, next){
   var id = req.params.id;
   var friend;
   User.find({ 'userId': id }, function(err, user) {
@@ -36,7 +45,7 @@ router.get('/:id', function(req, res, next){
 })
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', authenticatedUser, function(req, res, next) {
   var allUsers = [];
   User.find({}, function(err, users) {
     if (err) console.log(err);
@@ -47,7 +56,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/follow', function(req, res, next){
+router.post('/follow', authenticatedUser, function(req, res, next){
   var newFriend = Friend({
     id: req.body.id,
     username: req.body.name,
