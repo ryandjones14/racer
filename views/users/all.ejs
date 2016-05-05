@@ -14,8 +14,9 @@
           <img src=<%= user.profilePic %> alt="Profile Picture">
           <h3><%=user.username%></h3>
         </div>
+        <div class='follow__button'>
         <% if(friends.indexOf(user._id.toString())>-1){ %>
-            <button>Unfollow</button>
+            <a href="/users/delete/<%= user._id %>"><button class="btn btn-danger">Unfollow</button></a>
         <% } else { %>
             <div class="follow-form">
               <form action="/users/follow" method="post" accept-charset="utf-8">
@@ -27,6 +28,7 @@
               </form>
             </div>
         <% } %>
+        </div>
       <% } %>
     <% }) %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
