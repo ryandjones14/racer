@@ -1,5 +1,5 @@
 <header class="header">
-  <h2><a href="/" title="Home"><%= title %></a></h2>
+  <!-- <h2><a href="/" title="Home"><%= title %></a></h2>
   <ul>
     <% if(currentUser) { %>
     <li><a href="/logout">Log out</a></li>
@@ -10,5 +10,49 @@
     <li><a href="/request-token">Sign in with Twitter</a></li>
     <% } %>
     <li><a href="#">About</a></li>
-  </ul>
+  </ul> -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">racer</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if(!currentUser) { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/request-token">Sign In <i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+        </ul>
+      <% }else{ %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout">Sign Out</i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= currentUser.username %> <span><img class="navbar__profilePic" src=<%= currentUser.profilePic %> alt=""> </span><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/races/my-races">My Races</a></li>
+              <li><a href="/users/profile">Profile</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users">Users</i></a></li>
+        </ul>
+        <% } %>
+        <!-- <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form> -->
+
+      </div>
+    </div>
+  </nav>
 </header>

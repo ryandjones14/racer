@@ -2,7 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/united/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -24,27 +25,31 @@
           <div class="event__date">
             <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
           </div>
-          <button><a href=<%= activity.registrationUrlAdr %> target="_blank" title="">Register</a></button>
-          <% if(currentUser){ %>
-          <form action="/races/new" method="post" accept-charset="utf-8">
-            <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
-            <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
-            <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
-            <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
-            <input type="hidden" value="<%= activity.place.addressLine1Txt %>" name="address"></input>
-            <input type="hidden" value="<%= activity.place.cityName %>" name="city"></input>
-            <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
-            <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
-            <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
-            <input type="hidden" value="<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>" name="date"></input>
-            <input type="submit" value="Save"></input>
-          </form>
-          <% } %>
+          <div class="event__buttons"
+            <button class="btn btn-info"><a href=<%= activity.registrationUrlAdr %> target="_blank" title="">Register</a></button>
+            <% if(currentUser){ %>
+            <form action="/races/new" method="post" accept-charset="utf-8">
+              <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+              <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
+              <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
+              <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
+              <input type="hidden" value="<%= activity.place.addressLine1Txt %>" name="address"></input>
+              <input type="hidden" value="<%= activity.place.cityName %>" name="city"></input>
+              <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
+              <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
+              <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
+              <input type="hidden" value="<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>" name="date"></input>
+              <input class="btn btn-success" type="submit" value="Save"></input>
+            </form>
+            <% } %>
+          </div>
         </div>
       <% }) %>
     <% }else{ %>
     <h3>We're sorry, but there are no <%=activity%> events near <%= city %>, <%= state %> at this time. Check back later!</h3>
     <% } %>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </body>
 </html>

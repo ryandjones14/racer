@@ -1,7 +1,9 @@
-<form action="/races" method="post">
-  <p>City:</p>
+<form action="/races" method="post" class="form-horizontal">
+<fieldset>
+<legend>Find an event</legend>
+  <label for="city" class="col-lg-2 control-label">City</label>
   <input name='city' type='text'></input><br><br>
-  <p>State:</p>
+  <label for="state" class="col-lg-2 control-label">State</label>
   <select name='state'>
     <option>AL</option>
     <option>AK</option>
@@ -54,12 +56,13 @@
     <option>WI</option>
     <option>WY</option>
   </select><br><br>
-  <p>Activity:</p>
+  <label for="activity" class="col-lg-2 control-label">Select an Activity</label>
   <select name='activity'>
     <option>Running</option>
     <option>Cycling</option>
     <option>Swimming</option>
   </select><br><br>
 
-  <input type='submit'></input>
+  <input class='btn btn-primary' type='submit'></input>
+  </fieldset>
 </form>

@@ -10,3 +10,20 @@ a {
 .org-logo {
   width: 50px;
 }
+
+.navbar__profilePic{
+  width: 26px;
+  vertical-align: top;
+}
+
+li a{
+  height: 56px;
+}
+
+a{
+  color: inherit;
+}
+
+.event__buttons .btn{
+  display: inline-block;
+}
