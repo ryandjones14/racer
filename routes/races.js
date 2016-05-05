@@ -11,7 +11,7 @@ var activity;
 function authenticatedUser(req, res, next) {
   // If the user is authenticated, then we can continue with next
   // https://github.com/jaredhanson/passport/blob/a892b9dc54dce34b7170ad5d73d8ccfba87f4fcf/lib/passport/http/request.js#L74
-  if (req.isAuthenticated()) return next();
+  if (req.session.currentUser) return next();
   // Otherwise
   // req.flash('errorMessage', 'Login to access!');
   return res.redirect('/');
@@ -35,7 +35,7 @@ router.get('/delete/:id', authenticatedUser, function(req, res, next){
   });
 })
 
-router.post('/new', authenticatedUser, function(req, res, next){
+router.post('/new', authenticatedUser ,function(req, res, next){
   var newRace = Race({
     name: req.body.name,
     logo: req.body.logo,

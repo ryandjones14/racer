@@ -7,12 +7,16 @@
   </head>
   <body>
     <% include ../../partials/navbar %>
-    <% if(races.length>0){ %>
+    <div class='friend'>
       <h1><%= friend.username %></h1>
       <img src="<%= friend.profilePic %>" alt="Profile Picture">
+    </div>
+
+    <% if(races.length>0){ %>
+      <h2>Races:</h2>
       <% races.forEach(function(race){ %>
         <div class='race'>
-          <h2><%= race.name %></h2>
+          <h3><%= race.name %></h3>
           <% if(race.logo){ %>
             <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
           <% } %>

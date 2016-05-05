@@ -98,7 +98,7 @@ router.get('/callback', function(req, res) {
 
     // route for logging out
     router.get('/logout', function(req, res) {
-      global.currentUser = null;
+      req.session.currentUser = null;
       res.redirect('/');
     });
 
