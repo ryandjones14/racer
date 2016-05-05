@@ -10,7 +10,7 @@
     <% include ../../partials/navbar %>
     <h1><%= currentUser.username %></h1>
     <% friends.forEach(function(friend){ %>
-      <div class="friend">
+      <div class="user">
         <img src=<%= friend.profilePic %> alt="">
         <h3><a href="/users/<%= friend.id %>"><%=friend.username%></a></h3>
         <a href="/users/delete/<%= friend.id %>"><button class="btn btn-danger">Unfollow</button></a>
