@@ -44,14 +44,21 @@ router.get('/delete/:id', authenticatedUser, function(req, res, next){
 router.get('/:id', authenticatedUser, function(req, res, next){
   var id = req.params.id;
   var friend;
+  var myRaces = [];
   User.findOne({ '_id': id }, function(err, user) {
     if (err) console.log(err);
-    console.log("USER", user);
     friend = user;
-    Race.find({ 'userId': id }, function(err, races) {
+    Race.find({ 'userId': req.session.currentUser._id }, function(err, races) {
       if (err) console.log(err);
-      console.log("FRIEND", friend);
-      res.render('users/friend', {title: 'racer', races: races, friend: friend, currentUser: req.session.currentUser});
+      races.forEach(function(race){
+        myRaces.push(race.registerUrl)
+      });
+      console.log("MY RACES =====", myRaces);
+      Race.find({ 'userId': id }, function(err, races) {
+        if (err) console.log(err);
+        console.log("RACES", races);
+        res.render('users/friend', {title: 'racer', races: races, friend: friend, currentUser: req.session.currentUser, myRaces: myRaces});
+      });
     });
   });
 })

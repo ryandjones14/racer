@@ -31,19 +31,23 @@
             <h5><%= race.zip %></h5>
           </div>
           <a href=<%= race.registerUrl %> target="_blank" title=""><button class="btn">Register</button></a>
-          <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
-            <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
-            <input type="hidden" value="<%= race.name %>" name="name"></input>
-            <input type="hidden" value="<%= race.logo %>" name="logo"></input>
-            <input type="hidden" value="<%= race.place %>" name="place"></input>
-            <input type="hidden" value="<%= race.address %>" name="address"></input>
-            <input type="hidden" value="<%= race.city %>" name="city"></input>
-            <input type="hidden" value="<%= race.state %>" name="state"></input>
-            <input type="hidden" value="<%= race.zip %>" name="ZIP"></input>
-            <input type="hidden" value="<%= race.registerUrl %>" name="register"></input>
-            <input type="hidden" value="<%= race.date %>" name="date"></input>
-            <input class="btn btn-success" type="submit" value="Save"></input>
-          </form>
+          <% if(myRaces.indexOf(race.registerUrl)>-1){ %>
+            <!-- Don't show anything -->
+          <% } else { %>
+            <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
+              <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+              <input type="hidden" value="<%= race.name %>" name="name"></input>
+              <input type="hidden" value="<%= race.logo %>" name="logo"></input>
+              <input type="hidden" value="<%= race.place %>" name="place"></input>
+              <input type="hidden" value="<%= race.address %>" name="address"></input>
+              <input type="hidden" value="<%= race.city %>" name="city"></input>
+              <input type="hidden" value="<%= race.state %>" name="state"></input>
+              <input type="hidden" value="<%= race.zip %>" name="ZIP"></input>
+              <input type="hidden" value="<%= race.registerUrl %>" name="register"></input>
+              <input type="hidden" value="<%= race.date %>" name="date"></input>
+              <input class="btn btn-success" type="submit" value="Save"></input>
+            </form>
+          <% } %>
         </div>
       <% }) %>
     <% }else{ %>
