@@ -26,9 +26,9 @@
             <h5><%= race.city %>, <%= race.state %></h5>
             <h5><%= race.zip %></h5>
           </div>
-          <a href=<%= race.registerUrl %> target="_blank" title=""><button class="btn">Learn More</button></a>
+          <% include ../../partials/_learn-more %>
 
-          <a href="/races/delete/<%= race._id %>"><button class="btn btn-danger">Delete</button></a>
+          <% include ../../partials/_delete-race %>
         </div>
       <% }) %>
     <% }else{ %>
