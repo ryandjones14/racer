@@ -19,19 +19,19 @@ var twitter = new Twitter({
   callback: twitterCallbackUrl
 });
 
-/* GET request token page to start authentication */
-router.get('/request-token', function(req, res, next) {
-  // requestToken is the unique identifier of this life cycle with twitter
-  twitter.getRequestToken(function(err, requestToken, requestSecret) {
-    if (err){
-      res.status(500).send(err);
-    } else {
-      req.session.requestSecret = requestSecret;
-      // now the user gets sent to twitter with requestToken to authenticate their login access
-      res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
-    }
-  });
-});
+// /* GET request token page to start authentication */
+// router.get('/request-token', function(req, res, next) {
+//   // requestToken is the unique identifier of this life cycle with twitter
+//   twitter.getRequestToken(function(err, requestToken, requestSecret) {
+//     if (err){
+//       res.status(500).send(err);
+//     } else {
+//       req.session.requestSecret = requestSecret;
+//       // now the user gets sent to twitter with requestToken to authenticate their login access
+//       res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+//     }
+//   });
+// });
 
 router.get('/callback', function(req, res) {
 

@@ -26,10 +26,10 @@
             <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
           </div>
           <div class="event__buttons">
-            <% include ../../partials/_learn-more %>
+            <a href=<%= activity.registrationUrlAdr %> target="_blank" title=""><button class="btn">Learn More</button></a>
             <% if(currentUser){ %>
               <% if(myRaces.indexOf(activity.registrationUrlAdr)>-1) { %>
-                <% include ../../partials/_delete-race %>
+                <a href="/races/delete/<%= activity.organization.organizationName %>/<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>"><button class="btn btn-danger">Delete</button></a>
               <% } else { %>
                 <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
                   <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>

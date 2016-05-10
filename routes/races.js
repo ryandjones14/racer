@@ -107,6 +107,7 @@ router.get('/', function(req, res, next) {
           races.forEach(function(race){
             myRaces.push(race.registerUrl);
           });
+          console.log("MY RACES", myRaces);
           res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser, myRaces: myRaces});
         });
       } else {
