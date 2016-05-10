@@ -25,9 +25,11 @@ router.get('/my-races', authenticatedUser, function(req, res, next) {
   });
 });
 
-router.get('/delete/:id', authenticatedUser, function(req, res, next){
-  var id = req.params.id;
-  Race.findByIdAndRemove(id, function(err) {
+router.get('/delete/:name/:date', authenticatedUser, function(req, res, next){
+  var name = req.params.name;
+  var date = req.params.date;
+  var id = req.session.currentUser._id;
+  Race.findOneAndRemove({'userId' : id, 'name': name, 'date': date}, function(err) {
     if (err) console.log(err);
     console.log('Race deleted!');
     var backURL=req.header('Referer') || '/';
