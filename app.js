@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
+var methodOverride = require('method-override');
+
 
 
 var routes = require('./routes/index');
@@ -83,6 +85,20 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+// passport.initialize() middleware is required to initialize Passport.
+app.use(passport.initialize());
+// If your application uses persistent login sessions, passport.session()
+app.use(passport.session());
+// Set Passport configuration
+require('./config/passport')(passport);
+app.use(methodOverride(function(request, response) {
+  if(request.body && typeof request.body === 'object' && '_method' in request.body) {
+    var method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}));
 // allow global access to currentUser variable, this must be after require passport
 app.use(function(req, res, next) {
   global.currentUser = req.user;

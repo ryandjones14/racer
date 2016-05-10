@@ -1,8 +1,10 @@
 // load all the things we need
 var TwitterStrategy  = require('passport-twitter').Strategy;
+// var LocalStrategy = require('passport-local').Strategy;
+
 
 // load up the user model
-var User       = require('../app/models/user');
+var User = require('../models/user');
 
 // load the auth variables
 var configAuth = require('./auth');
