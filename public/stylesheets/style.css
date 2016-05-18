@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,13 +6,33 @@ a {
   color: inherit;
 }
 
-.org-logo {
-  width: 50px;
+.navbar{
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
-.navbar__profilePic{
-  width: 26px;
-  vertical-align: top;
+  .navbar__profilePic{
+    width: 26px;
+    vertical-align: top;
+  }
+
+.main{
+  margin: 66px 20px 30px 20px;
+  max-width: 960px;
+  padding: 5px 30px;
+}
+
+/*LANDING OAGE*/
+
+.race-form{
+  padding: 50px;
+}
+
+/*RACES*/
+
+.org-logo {
+  width: 50px;
 }
 
 li a{
@@ -38,9 +57,44 @@ li a{
 }
 
 .event {
-  width: 65%;
+  width: 70%;
+  /*display: inline-block;*/
   background-color: #f2f2f2;
-  border-radius: 5px;
+  border: 1px solid #0E5D78;
+  border-radius: 1px;
   padding: 1px 10px 20px 10px;
   margin: 10px 0;
+}
+
+footer{
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  background: #222222;
+  font-size: 8px;
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+}
+  footer li{
+    display: inline;
+    padding: 0 10px;
+    vertical-align: bottom;
+  }
+  footer a{
+    color: #008CBA;
+  }
+
+    footer a:visited{
+      color: #008CBA;
+    }
+
+    footer a:hover{
+      color: #1E5B6F;
+    }
+
+@media (max-width: 767px){
+  .event{
+    width: 85%;
+  }
 }

@@ -8,51 +8,54 @@
   </head>
   <body>
     <% include ../../partials/navbar %>
-    <div class='friend'>
-      <h1><%= friend.username %></h1>
-      <img src="<%= friend.profilePic %>" alt="Profile Picture">
-    </div>
+    <div class="main">
+      <div class='friend'>
+        <h1><%= friend.username %></h1>
+        <img src="<%= friend.profilePic %>" alt="Profile Picture">
+      </div>
 
-    <% if(races.length>0){ %>
-      <h2>Races:</h2>
-      <% races.forEach(function(race){ %>
-        <div class='race'>
-          <h3><%= race.name %></h3>
-          <% if(race.logo){ %>
-            <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
-          <% } %>
-          <div class="race__date">
-            <h4>When: <%= race.date %></h4>
+      <% if(races.length>0){ %>
+        <h2>Races:</h2>
+        <% races.forEach(function(race){ %>
+          <div class='race'>
+            <h3><%= race.name %></h3>
+            <% if(race.logo){ %>
+              <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
+            <% } %>
+            <div class="race__date">
+              <h4>When: <%= race.date %></h4>
+            </div>
+            <div class="race__location">
+              <h4>Where: <%= race.place %></h4>
+              <h5><%= race.address %></h5>
+              <h5><%= race.city %>, <%= race.state %></h5>
+              <h5><%= race.zip %></h5>
+            </div>
+            <% include ../../partials/_learn-more %>
+            <% if(myRaces.indexOf(race.registerUrl)>-1){ %>
+              <% include ../../partials/_delete-race %>
+            <% } else { %>
+              <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
+                <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+                <input type="hidden" value="<%= race.name %>" name="name"></input>
+                <input type="hidden" value="<%= race.logo %>" name="logo"></input>
+                <input type="hidden" value="<%= race.place %>" name="place"></input>
+                <input type="hidden" value="<%= race.address %>" name="address"></input>
+                <input type="hidden" value="<%= race.city %>" name="city"></input>
+                <input type="hidden" value="<%= race.state %>" name="state"></input>
+                <input type="hidden" value="<%= race.zip %>" name="ZIP"></input>
+                <input type="hidden" value="<%= race.registerUrl %>" name="register"></input>
+                <input type="hidden" value="<%= race.date %>" name="date"></input>
+                <input class="btn btn-success" type="submit" value="Save"></input>
+              </form>
+            <% } %>
           </div>
-          <div class="race__location">
-            <h4>Where: <%= race.place %></h4>
-            <h5><%= race.address %></h5>
-            <h5><%= race.city %>, <%= race.state %></h5>
-            <h5><%= race.zip %></h5>
-          </div>
-          <% include ../../partials/_learn-more %>
-          <% if(myRaces.indexOf(race.registerUrl)>-1){ %>
-            <% include ../../partials/_delete-race %>
-          <% } else { %>
-            <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
-              <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
-              <input type="hidden" value="<%= race.name %>" name="name"></input>
-              <input type="hidden" value="<%= race.logo %>" name="logo"></input>
-              <input type="hidden" value="<%= race.place %>" name="place"></input>
-              <input type="hidden" value="<%= race.address %>" name="address"></input>
-              <input type="hidden" value="<%= race.city %>" name="city"></input>
-              <input type="hidden" value="<%= race.state %>" name="state"></input>
-              <input type="hidden" value="<%= race.zip %>" name="ZIP"></input>
-              <input type="hidden" value="<%= race.registerUrl %>" name="register"></input>
-              <input type="hidden" value="<%= race.date %>" name="date"></input>
-              <input class="btn btn-success" type="submit" value="Save"></input>
-            </form>
-          <% } %>
-        </div>
-      <% }) %>
-    <% }else{ %>
-    <h3>It doesn't look like <%= friend.username %> has saved any races yet.</h3>
-    <% } %>
+        <% }) %>
+      <% }else{ %>
+      <h3>It doesn't look like <%= friend.username %> has saved any races yet.</h3>
+      <% } %>
+    </div>
+    <% include ../../partials/_footer %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>

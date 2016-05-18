@@ -8,50 +8,57 @@
   </head>
   <body>
     <% include ../../partials/navbar %>
-    <% if(activities.length>0){ %>
-      <h1><%= activity %> events near <%= city %>, <%= state %></h1>
-      <% activities.forEach(function(activity){ %>
-        <div class='event'>
-          <h2><%= activity.organization.organizationName %></h2>
-          <% if(activity.logoUrlAdr){ %>
-            <img src=<%= activity.logoUrlAdr %> alt="Organization Logo" class='org-logo'>
-          <% } %>
-          <div class="event__location">
-            <h4>Where: <%= activity.place.placeName %></h4>
-            <h5><%= activity.place.addressLine1Txt %></h5>
-            <h5><%= activity.place.cityName %>, <%= activity.place.stateProvinceCode %></h5>
-            <h5><%= activity.place.postalCode %></h5>
-          </div>
-          <div class="event__date">
-            <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
-          </div>
-          <div class="event__buttons">
-            <a href=<%= activity.registrationUrlAdr %> target="_blank" title=""><button class="btn">Learn More</button></a>
-            <% if(currentUser){ %>
-              <% if(myRaces.indexOf(activity.registrationUrlAdr)>-1) { %>
-                <a href="/races/delete/<%= activity.organization.organizationName %>/<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>"><button class="btn btn-danger">Delete</button></a>
-              <% } else { %>
-                <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
-                  <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
-                  <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
-                  <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
-                  <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
-                  <input type="hidden" value="<%= activity.place.addressLine1Txt %>" name="address"></input>
-                  <input type="hidden" value="<%= activity.place.cityName %>" name="city"></input>
-                  <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
-                  <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
-                  <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
-                  <input type="hidden" value="<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>" name="date"></input>
-                  <input class="btn btn-success" type="submit" value="Save"></input>
-                </form>
-              <% } %>
+    <div class="main">
+      <% if(activities.length>0){ %>
+        <h1><%= activity %> events near <%= city %>, <%= state %></h1>
+        <% activities.forEach(function(activity){ %>
+          <div class='event'>
+            <h2><%= activity.organization.organizationName %></h2>
+            <% if(activity.logoUrlAdr){ %>
+              <img src=<%= activity.logoUrlAdr %> alt="Organization Logo" class='org-logo'>
             <% } %>
+            <div class="event__location">
+              <% if(activity.place.placeName){ %>
+                <h4>Where: <%= activity.place.placeName %></h4>
+              <% } %>
+              <% if(activity.place.addressLine1Txt){ %>
+                <h5><%= activity.place.addressLine1Txt %></h5>
+                <h5><%= activity.place.cityName %>, <%= activity.place.stateProvinceCode %></h5>
+                <h5><%= activity.place.postalCode %></h5>
+              <% } %>
+            </div>
+            <div class="event__date">
+              <h4>When: <%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %></h4>
+            </div>
+            <div class="event__buttons">
+              <a href=<%= activity.registrationUrlAdr %> target="_blank" title=""><button class="btn">Learn More</button></a>
+              <% if(currentUser){ %>
+                <% if(myRaces.indexOf(activity.registrationUrlAdr)>-1) { %>
+                  <a href="/races/delete/<%= activity.organization.organizationName %>/<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>"><button class="btn btn-danger">Delete</button></a>
+                <% } else { %>
+                  <form action="/races/new" method="post" accept-charset="utf-8" class='event__btn'>
+                    <input type="hidden" value="<%= currentUser._id %>" name="userId"></input>
+                    <input type="hidden" value="<%= activity.organization.organizationName %>" name="name"></input>
+                    <input type="hidden" value="<%= activity.logoUrlAdr %>" name="logo"></input>
+                    <input type="hidden" value="<%= activity.place.placeName %>" name="place"></input>
+                    <input type="hidden" value="<%= activity.place.addressLine1Txt %>" name="address"></input>
+                    <input type="hidden" value="<%= activity.place.cityName %>" name="city"></input>
+                    <input type="hidden" value="<%= activity.place.stateProvinceCode %>" name="state"></input>
+                    <input type="hidden" value="<%= activity.place.postalCode %>" name="ZIP"></input>
+                    <input type="hidden" value="<%= activity.registrationUrlAdr %>" name="register"></input>
+                    <input type="hidden" value="<%= activity.activityRecurrences[0].activityStartDate.substring(0, 10) %>" name="date"></input>
+                    <input class="btn btn-success" type="submit" value="Save"></input>
+                  </form>
+                <% } %>
+              <% } %>
+            </div>
           </div>
-        </div>
-      <% }) %>
-    <% }else{ %>
-    <h3>We're sorry, but there are no <%=activity%> events near <%= city %>, <%= state %> at this time. Check back later!</h3>
-    <% } %>
+        <% }) %>
+      <% }else{ %>
+      <h3>We're sorry, but there are no <%=activity%> events near <%= city %>, <%= state %> at this time. Check back later!</h3>
+      <% } %>
+    </div>
+    <% include ../../partials/_footer %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
