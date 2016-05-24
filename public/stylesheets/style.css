@@ -53,7 +53,7 @@ a {
     }
 
 .main{
-  margin: 66px 20px 30px 20px;
+  margin: 60px auto;
   max-width: 960px;
   padding: 5px 30px;
 }
@@ -62,6 +62,10 @@ a {
 
 .race-form{
   padding: 50px;
+}
+
+legend{
+  font-size: 36px;
 }
 
 /*RACES*/
