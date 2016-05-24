@@ -144,4 +144,8 @@ footer{
   .event{
     width: 85%;
   }
+  .navbar ul{
+    background: #333333;
+    margin: 0 -15px;
+  }
 }
