@@ -9,6 +9,7 @@
   <body>
     <% include ../../partials/navbar %>
     <div class="main">
+      <div class="races">
       <% if(activities.length>0){ %>
         <h1><%= activity %> events near <%= city %>, <%= state %></h1>
         <% activities.forEach(function(activity){ %>
@@ -57,6 +58,7 @@
       <% }else{ %>
       <h3>We're sorry, but there are no <%=activity%> events near <%= city %>, <%= state %> at this time. Check back later!</h3>
       <% } %>
+      </div>
     </div>
     <% include ../../partials/_footer %>
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
