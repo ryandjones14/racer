@@ -10,8 +10,9 @@
   <body>
     <% include ../../partials/navbar %>
     <div class="main">
-      <h1>Following:</h1>
+
       <div class="following">
+        <h2>Following:</h2>
         <% friends.forEach(function(friend){ %>
           <div class="user">
             <img src=<%= friend.profilePic %> alt="">

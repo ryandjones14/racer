@@ -15,7 +15,7 @@
         <% if(user._id != currentUser._id){ %>
           <div class="user">
             <img src=<%= user.profilePic %> alt="Profile Picture">
-            <h3 class="user__name"><%=user.username%></h3>
+            <h3 class="user__name"><a href="/users/<%= user.id %>"><%=user.username%></a></h3>
             <div class='follow__button user'>
             <% if(friends.indexOf(user._id.toString())>-1){ %>
                 <a href="/users/delete/<%= user._id %>"><button class="btn btn-danger">Unfollow</button></a>
