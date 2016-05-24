@@ -148,4 +148,10 @@ footer{
     background: #333333;
     margin: 0 -15px;
   }
+  .race-form {
+      width: 100%;
+  }
+  footer ul{
+    padding: 0;
+  }
 }
