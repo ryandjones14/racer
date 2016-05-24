@@ -5,8 +5,6 @@ var passport = require('passport');
 var User = require('../models/user');
 var session = require('express-session');
 
-
-
 var twitterKey = process.env.XPLORR_TWITTER_KEY;
 var twitterSecret = process.env.XPLORR_TWITTER_SECRET;
 var twitterCallbackUrl = process.env.XPLORR_CALLBACK;
@@ -18,20 +16,6 @@ var twitter = new Twitter({
   consumerSecret: twitterSecret,
   callback: twitterCallbackUrl
 });
-
-// /* GET request token page to start authentication */
-// router.get('/request-token', function(req, res, next) {
-//   // requestToken is the unique identifier of this life cycle with twitter
-//   twitter.getRequestToken(function(err, requestToken, requestSecret) {
-//     if (err){
-//       res.status(500).send(err);
-//     } else {
-//       req.session.requestSecret = requestSecret;
-//       // now the user gets sent to twitter with requestToken to authenticate their login access
-//       res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
-//     }
-//   });
-// });
 
 router.get('/callback', function(req, res) {
 
