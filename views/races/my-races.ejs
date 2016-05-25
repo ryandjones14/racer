@@ -11,18 +11,20 @@
     <% include ../../partials/navbar %>
     <div class="main">
       <% if(races.length>0){ %>
-        <h1><%= currentUser.username %></h1>
+      <div class="user">
         <img src="<%= currentUser.profilePic %>" alt="Profile Picture">
+        <h1><%= currentUser.username %></h1>
+      </div>
         <% races.forEach(function(race){ %>
-          <div class='race'>
+          <div class='event'>
             <h2><%= race.name %></h2>
             <% if(race.logo){ %>
               <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
             <% } %>
-            <div class="race__date">
+            <div class="event__date">
               <h4>When: <%= race.date %></h4>
             </div>
-            <div class="race__location">
+            <div class="event__location">
               <h4>Where: <%= race.place %></h4>
               <h5><%= race.address %></h5>
               <h5><%= race.city %>, <%= race.state %></h5>

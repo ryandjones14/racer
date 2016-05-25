@@ -18,15 +18,15 @@
       <% if(races.length>0){ %>
         <h2>Races:</h2>
         <% races.forEach(function(race){ %>
-          <div class='race'>
+          <div class='event'>
             <h3><%= race.name %></h3>
             <% if(race.logo){ %>
               <img src=<%= race.logo %> alt="Organization Logo" class='org-logo'>
             <% } %>
-            <div class="race__date">
+            <div class="event__date">
               <h4>When: <%= race.date %></h4>
             </div>
-            <div class="race__location">
+            <div class="event__location">
               <h4>Where: <%= race.place %></h4>
               <h5><%= race.address %></h5>
               <h5><%= race.city %>, <%= race.state %></h5>
