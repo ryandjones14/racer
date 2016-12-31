@@ -31,7 +31,6 @@ router.get('/delete/:name/:date', authenticatedUser, function(req, res, next){
   var id = req.session.currentUser._id;
   Race.findOneAndRemove({'userId' : id, 'name': name, 'date': date}, function(err) {
     if (err) console.log(err);
-    console.log('Race deleted!');
     var backURL=req.header('Referer') || '/';
     res.redirect(backURL);
   });
@@ -53,7 +52,6 @@ router.post('/new', authenticatedUser ,function(req, res, next){
 
   newRace.save(function(err, user) {
     if (err) console.log(err);
-    console.log("RACE", newRace);
     var backURL=req.header('Referer') || '/';
     res.redirect(backURL);
   });
@@ -63,7 +61,6 @@ router.post('/', function(req, res, next){
   city = req.body.city;
   state = req.body.state;
   activity = req.body.activity;
-  console.log("Testestest");
   res.redirect('/races');
 })
 
@@ -99,16 +96,26 @@ router.get('/', function(req, res, next) {
       data.results.forEach(function(result) {
         activities.push(result);
       });
-      console.log(activities[0]);
       var myRaces = [];
+
+      function capitalize(string){
+        var array = string.split(' ');
+
+        array.forEach(function(word, index){
+          array[index] = word.charAt(0).toUpperCase() + word.slice(1);
+        });
+
+        return array;
+      }
+
+
       if (req.session.currentUser){
         Race.find({'userId': req.session.currentUser._id}, function(err, races) {
           if (err) console.log(err);
           races.forEach(function(race){
             myRaces.push(race.registerUrl);
           });
-          console.log("MY RACES", myRaces);
-          res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser, myRaces: myRaces});
+          res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: capitalize(city), state: state, currentUser: req.session.currentUser, myRaces: myRaces});
         });
       } else {
         res.render('races/races', { title: 'racer', activities: activities, activity: activity, city: city, state: state, currentUser: req.session.currentUser});

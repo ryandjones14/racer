@@ -12,7 +12,7 @@
       <% if(activities.length>0){ %>
         <h1><%= activity %> events near <%= city %>, <%= state %></h1>
         <% activities.forEach(function(activity){ %>
-          <div class='event'>
+          <div class="event">
             <h2><%= activity.organization.organizationName %></h2>
             <% if(activity.logoUrlAdr){ %>
               <img src=<%= activity.logoUrlAdr %> alt="Organization Logo" class='org-logo'>
